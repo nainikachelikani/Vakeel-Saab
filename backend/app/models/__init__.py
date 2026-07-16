@@ -1,7 +1,7 @@
 """Database models package."""
 
 from app.models.user import User
-from app.models.document import Document
+from app.models.document import Document, UploadedDocument, DocumentChunk
 from app.models.conversation import Conversation
 from app.models.message import Message
 from app.models.report import Report
@@ -12,6 +12,8 @@ from app.models.agent_execution import AgentExecution
 __all__ = [
     "User",
     "Document",
+    "UploadedDocument",
+    "DocumentChunk",
     "Conversation",
     "Message",
     "Report",

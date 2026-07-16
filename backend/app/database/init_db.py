@@ -8,7 +8,7 @@ from app.database.session import engine
 
 # Import all models to ensure they are registered on the Base metadata
 from app.models.user import User  # noqa
-from app.models.document import Document  # noqa
+from app.models.document import UploadedDocument, DocumentChunk  # noqa
 from app.models.conversation import Conversation  # noqa
 from app.models.message import Message  # noqa
 from app.models.report import Report  # noqa
