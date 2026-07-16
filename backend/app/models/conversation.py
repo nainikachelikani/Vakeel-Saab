@@ -15,7 +15,10 @@ class Conversation(Base, TimestampMixin):
     __tablename__ = "conversations"
 
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
+    user_id = Column(UUID(as_uuid=True), ForeignKey("users.id"), nullable=False, index=True)
     title = Column(String(500), nullable=False)
+
+    # Backward compatibility fields
     status = Column(
         SAEnum("active", "completed", "archived", name="conversation_status"),
         default="active",
@@ -23,12 +26,15 @@ class Conversation(Base, TimestampMixin):
     )
     category = Column(String(100), nullable=True)  # civil, criminal, family, property
 
-    # Foreign keys
-    user_id = Column(UUID(as_uuid=True), ForeignKey("users.id"), nullable=False)
-
     # Relationships
     user = relationship("User", back_populates="conversations")
-    messages = relationship("Message", back_populates="conversation", lazy="dynamic", order_by="Message.created_at")
+    messages = relationship(
+        "Message",
+        back_populates="conversation",
+        cascade="all, delete-orphan",
+        lazy="dynamic",
+        order_by="Message.created_at",
+    )
 
     def __repr__(self) -> str:
         return f"<Conversation {self.title}>"
