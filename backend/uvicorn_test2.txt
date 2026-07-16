@@ -1,0 +1,47 @@
+﻿.venv\Scripts\uvicorn
+ : INFO:     Will 
+watch for changes in 
+these directories: ['
+C:\\Users\\yasaswi\\O
+neDrive\\Desktop\\Vak
+eel-Saab\\backend\\ap
+p']
+At line:1 char:1
++ .venv\Scripts\uvico
+rn app.main:app 
+--reload 
+--reload-dir app 
+--host 0 ...
++ ~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~
+    + CategoryInfo   
+           : NotSpe  
+  cified: (INFO:     
+    Will ...\back    
+end\\app']:Strin    
+g) [], RemoteExc    
+eption
+    + FullyQualified 
+   ErrorId : Native  
+  CommandError
+ 
+INFO:     Uvicorn 
+running on 
+http://0.0.0.0:8000 
+(Press CTRL+C to 
+quit)
+INFO:     Started 
+reloader process 
+[16600] using 
+WatchFiles
+INFO:     Started 
+server process 
+[24632]
+INFO:     Waiting 
+for application 
+startup.
+INFO:     
+Application startup 
+complete.

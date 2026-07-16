@@ -1,4 +1,4 @@
-"""Chat API compatibility shim."""
+"""Chat API router package."""
 
 from app.api.chat.router import router
 

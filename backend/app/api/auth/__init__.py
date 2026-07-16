@@ -1,4 +1,4 @@
-"""Authentication API compatibility shim."""
+"""Authentication API router package."""
 
 from app.api.auth.router import router
 

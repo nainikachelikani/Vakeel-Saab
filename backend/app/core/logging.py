@@ -1,25 +1,5 @@
-"""Logging configuration for the application."""
+"""Backward compatibility shim for logging services."""
 
-import logging
-import sys
+from app.config.logging import logger, setup_logging
 
-
-def setup_logging(level: str = "INFO") -> logging.Logger:
-    """Configure and return the application logger."""
-    logger = logging.getLogger("vakeelsaab")
-    logger.setLevel(getattr(logging, level.upper(), logging.INFO))
-
-    handler = logging.StreamHandler(sys.stdout)
-    handler.setLevel(logging.DEBUG)
-
-    formatter = logging.Formatter(
-        "%(asctime)s - %(name)s - %(levelname)s - %(message)s",
-        datefmt="%Y-%m-%d %H:%M:%S",
-    )
-    handler.setFormatter(formatter)
-    logger.addHandler(handler)
-
-    return logger
-
-
-logger = setup_logging()
+__all__ = ["logger", "setup_logging"]
