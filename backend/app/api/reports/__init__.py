@@ -1,4 +1,4 @@
-"""Reports API compatibility shim."""
+"""Reports API router package."""
 
 from app.api.reports.router import router
 

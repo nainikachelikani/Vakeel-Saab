@@ -1,5 +1,5 @@
-"""Database session management."""
+"""Backward compatibility shim for app.db.session."""
 
-from app.core.database import SessionLocal, get_db
+from app.database.session import SessionLocal, get_db
 
 __all__ = ["SessionLocal", "get_db"]

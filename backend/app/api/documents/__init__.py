@@ -1,4 +1,4 @@
-"""Documents API compatibility shim."""
+"""Documents API router package."""
 
 from app.api.documents.router import router
 
