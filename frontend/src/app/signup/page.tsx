@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { useAuth } from '@/hooks/useAuth';
 import { Input } from '@/components/common/forms/Input';
 import { Button } from '@/components/common/buttons/Button';
 import { Card } from '@/components/common/cards/Card';
@@ -9,13 +10,31 @@ import Link from 'next/link';
 
 export default function SignupPage() {
   const router = useRouter();
+  const { register, loading } = useAuth();
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    router.push('/login');
+    if (!fullName || !email || !password) {
+      setError('Please fill in all fields');
+      return;
+    }
+    setError('');
+
+    try {
+      await register({
+        fullName,
+        email,
+        password,
+        role: 'citizen',
+      });
+      router.push('/dashboard');
+    } catch (err) {
+      setError('Registration failed. Please try again.');
+    }
   };
 
   return (
@@ -28,6 +47,7 @@ export default function SignupPage() {
         <p className="text-xs text-gray-500 mt-1">Get legal protection with Vakeel Saab</p>
 
         <form onSubmit={handleSubmit} className="mt-8 flex flex-col gap-5 text-left">
+          {error && <div className="p-3 bg-red-50 text-red-600 rounded-lg text-xs font-semibold">{error}</div>}
           <Input
             label="Full Name"
             placeholder="John Doe"
@@ -48,8 +68,8 @@ export default function SignupPage() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <Button type="submit" className="w-full mt-2 py-3">
-            Register Account
+          <Button type="submit" disabled={loading} className="w-full mt-2 py-3">
+            {loading ? 'Registering...' : 'Register Account'}
           </Button>
         </form>
 
