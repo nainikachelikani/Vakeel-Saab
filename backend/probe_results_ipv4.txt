@@ -1,0 +1,4 @@
+FAIL: postgresql://postgres:change_me_in_production@127.0.0.1:5432/postgres -> connection to server at "127.0.0.1", port 5432 failed: FATAL:  password authentication failed for user "postgres"
+FAIL: postgresql://postgres@127.0.0.1:5432/postgres -> connection to server at "127.0.0.1", port 5432 failed: fe_sendauth: no password supplied
+FAIL: postgresql://vakeelsaab:change_me_in_production@127.0.0.1:5432/postgres -> connection to server at "127.0.0.1", port 5432 failed: FATAL:  password authentication failed for user "vakeelsaab"
+FAIL: postgresql://vakeelsaab@127.0.0.1:5432/postgres -> connection to server at "127.0.0.1", port 5432 failed: fe_sendauth: no password supplied
