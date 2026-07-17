@@ -1,6 +1,7 @@
 """Documents API router with mock implementations."""
 
-from fastapi import APIRouter, UploadFile, File, Form
+from fastapi import APIRouter, UploadFile, File, Form, Request, HTTPException
+import base64
 from typing import Optional
 
 router = APIRouter()
@@ -15,11 +16,40 @@ async def ping():
 
 @router.post("/upload")
 async def upload_document(
-    file: UploadFile = File(...),
+    request: Request,
+    file: Optional[UploadFile] = File(None),
     title: Optional[str] = Form(None),
     document_type: Optional[str] = Form("other"),
 ):
     """Upload a legal document for analysis."""
+    content_type = request.headers.get("content-type", "")
+    
+    if "application/json" in content_type:
+        data = await request.json()
+        filename = data.get("file_name", "uploaded_doc.txt")
+        title_val = data.get("title", filename)
+        doc_type_val = data.get("document_type", "other")
+        file_type_val = data.get("file_type", "application/pdf")
+        
+        return {
+            "id": "doc-001-uuid-placeholder",
+            "title": title_val,
+            "file_name": filename,
+            "file_type": file_type_val,
+            "file_size": 2456789,
+            "document_type": doc_type_val,
+            "status": "processing",
+            "summary": None,
+            "risk_score": None,
+            "page_count": 24,
+            "language": "en",
+            "created_at": "2024-10-24T15:00:00Z",
+            "updated_at": "2024-10-24T15:00:00Z",
+        }
+
+    if not file:
+        raise HTTPException(status_code=400, detail="No file provided")
+
     return {
         "id": "doc-001-uuid-placeholder",
         "title": title or file.filename,

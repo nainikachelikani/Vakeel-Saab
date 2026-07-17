@@ -17,7 +17,8 @@ export function Input({
   id,
   ...props
 }: InputProps) {
-  const inputId = id || `input-${Math.random().toString(36).substr(2, 9)}`;
+  const fallbackId = React.useId();
+  const inputId = id || fallbackId;
   return (
     <div className="w-full flex flex-col gap-1.5">
       {label && (
