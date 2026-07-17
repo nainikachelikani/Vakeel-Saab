@@ -20,6 +20,8 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
+      "@shared/constants/*": ["../shared/constants/*"],
+      "@shared/api/*": ["../shared/api/*"],
       "@shared/types/*": ["../shared/types/*"],
       "@shared/dto/*": ["../shared/dto/*"],
       "@shared/interfaces/*": ["../shared/interfaces/*"]

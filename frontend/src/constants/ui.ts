@@ -1,5 +1,5 @@
-import { ROUTES } from '../../../shared/constants/routes';
-import { API_ENDPOINTS } from '../../../shared/api/endpoints';
+import { ROUTES } from '@shared/constants/routes';
+import { API_ENDPOINTS } from '@shared/api/endpoints';
 
 export const APP_ROUTES = ROUTES;
 export const API_ROUTES = API_ENDPOINTS;

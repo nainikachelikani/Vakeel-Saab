@@ -25,7 +25,7 @@ export const documentService = {
     return response.data;
   },
 
-  async searchDocuments(query: SearchDocumentRequest): Promise<any> {
+  async searchDocuments(query: SearchDocumentRequest): Promise<unknown> {
     const response = await api.post(API_ROUTES.DOCUMENTS.SEARCH, query);
     return response.data;
   },

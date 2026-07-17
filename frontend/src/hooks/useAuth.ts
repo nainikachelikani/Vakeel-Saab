@@ -17,8 +17,9 @@ export function useAuth() {
       const res = await authService.login(data);
       storeLogin(res.user, res.accessToken);
       return res.user;
-    } catch (err: any) {
-      setError(err?.response?.data?.detail || 'Authentication failed');
+    } catch (err: unknown) {
+      const error = err as { response?: { data?: { detail?: string } } };
+      setError(error?.response?.data?.detail || 'Authentication failed');
       throw err;
     } finally {
       setLoading(false);
@@ -32,8 +33,9 @@ export function useAuth() {
       const res = await authService.register(data);
       storeLogin(res.user, res.accessToken);
       return res.user;
-    } catch (err: any) {
-      setError(err?.response?.data?.detail || 'Registration failed');
+    } catch (err: unknown) {
+      const error = err as { response?: { data?: { detail?: string } } };
+      setError(error?.response?.data?.detail || 'Registration failed');
       throw err;
     } finally {
       setLoading(false);
